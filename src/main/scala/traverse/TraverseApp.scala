@@ -16,10 +16,12 @@ object TraverseApp {
     val res2 = listTraverse.sequence(gll)
     println(res2)
 
+    val res3 = listTraverse.traverse(ll)(x => List(x - 1, x + 1))
+    println(res3)
 
     val tree = Node(1, List(Node(10, List(Node(100, Nil))), Node(20, Nil)))
-    println(tree.fold(0)(_ + _))
-    println(tree.fold(1)(_ * _))
+    assert(tree.fold(0)(_ + _) == 131)
+    assert(tree.fold(1)(_ * _) == 20000)
   }
 
 

@@ -13,6 +13,16 @@ trait Applicative[F[_]] {
 
 
 object Applicative {
+
+  implicit val listInstance = new Applicative[List] {
+    override def pure[A](a: A): List[A] = List(a)
+
+    override def ap[A, B](fa: List[A])(f: List[A => B]): List[B] = for {
+      a <- fa
+      finner <- f
+    } yield finner(a)
+  }
+
   implicit val optionInstance = new Applicative[Option] {
     override def pure[A](a: A): Option[A] = Option(a)
 
