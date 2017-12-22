@@ -16,6 +16,8 @@ object CataApp {
 
     val sumOfNodeValues = Catamorphism.cata[MyBinaryTreeF[Int, ?], Int](alg)(tree)
 
+    assert(sumOfNodeValues == 2)
+
   }
 
 }

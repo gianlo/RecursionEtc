@@ -18,7 +18,7 @@ object MyTree {
   type MyBinaryTree[A] = Fix[MyBinaryTreeF[A, ?]]
 
   object MyBinaryTree{
-    def apply[A](f: MyBinaryTreeF[A, MyBinaryTree[A]]): MyBinaryTree[A] = ???
+    def apply[A](f: MyBinaryTreeF[A, Fix[MyBinaryTreeF[A, ?]]]): Fix[MyBinaryTreeF[A, ?]] = Fix[MyBinaryTreeF[A, ?]](f)
     def leaf[A]: MyBinaryTree[A] = apply(Leaf)
     def node[A](left: MyBinaryTree[A], value: A, right: MyBinaryTree[A]) : MyBinaryTree[A] = apply(Node(left, value, right))
   }
