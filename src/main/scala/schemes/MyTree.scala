@@ -1,7 +1,7 @@
 package schemes
 
 import functor.Functor
-object BinaryTrees {
+object MyTree {
 
   sealed trait     MyBinaryTreeF[+A, +T]
   case object      Leaf                                       extends MyBinaryTreeF[Nothing, Nothing]
@@ -19,7 +19,7 @@ object BinaryTrees {
 
   object MyBinaryTree{
     def apply[A](f: MyBinaryTreeF[A, MyBinaryTree[A]]): MyBinaryTree[A] = ???
-    def leaf: MyBinaryTree[Nothing] = apply(Leaf)
+    def leaf[A]: MyBinaryTree[A] = apply(Leaf)
     def node[A](left: MyBinaryTree[A], value: A, right: MyBinaryTree[A]) : MyBinaryTree[A] = apply(Node(left, value, right))
   }
 

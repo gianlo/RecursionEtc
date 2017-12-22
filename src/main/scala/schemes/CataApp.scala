@@ -2,19 +2,19 @@ package schemes
 
 object CataApp {
 
-  import BinaryTrees._
+  import MyTree._
+  import FAlgebra._
+  import MyBinaryTree._
 
   def main(args: Array[String]): Unit = {
-    val tree: MyBinaryTree[Int] = MyBinaryTree.node[Int](
-      MyBinaryTree.node[Int](
-        MyBinaryTree.node[Int](MyBinaryTree.leaf, 2, MyBinaryTree.node[Int](MyBinaryTree.leaf, 1, MyBinaryTree.leaf)), -3, MyBinaryTree.leaf))
+    val tree: MyBinaryTree[Int] = node(node(node(leaf, 2, node(leaf, 1, leaf)), -3, leaf), 2, leaf)
 
-    val alg: FAlgebra.FAlgebra[MyBinaryTreeF[Int, ?], Int] = {
+    val alg: FAlgebra[MyBinaryTreeF[Int, ?], Int] = {
       case Leaf => 0
       case Node(left, value, right) => left + value + right
     }
 
-    val ciccio: Int = Catamorphism.cata(alg)(tree)
+    val sumOfNodeValues = Catamorphism.cata[MyBinaryTreeF[Int, ?], Int](alg)(tree)
 
   }
 
